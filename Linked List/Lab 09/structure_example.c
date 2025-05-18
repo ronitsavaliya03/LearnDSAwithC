@@ -14,9 +14,9 @@ int main() {
     ptr = &s1;
 
     printf("Enter roll number: ");
-    scanf("%d", &ptr->roll_no);
+    scanf("%d", &ptr->roll_no);           // roll_no is a value, we need address
     printf("Enter name: ");
-    scanf("%s", ptr->name);
+    scanf("%s", ptr->name);               // name is already an address
     // scanf("%s", &ptr->name[0]);
     printf("Enter branch: ");
     scanf("%s", ptr->branch);
