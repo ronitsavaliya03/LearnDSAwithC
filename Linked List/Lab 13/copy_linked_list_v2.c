@@ -43,10 +43,7 @@ struct Node* copyList() {
 
     // Copy first node
     NEW = (struct Node*)malloc(sizeof(struct Node));
-    if (NEW == NULL) {
-        printf("Underflow\n");
-        return NULL;
-    }
+    
     NEW->info = first->info;
     BEGIN = NEW;
 
@@ -58,10 +55,7 @@ struct Node* copyList() {
         SAVE = SAVE->link;
 
         NEW = (struct Node*)malloc(sizeof(struct Node));
-        if (NEW == NULL) {
-            printf("Underflow\n");
-            return NULL;
-        }
+        
         NEW->info = SAVE->info;
         PRED->link = NEW;
     }
