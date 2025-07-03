@@ -19,28 +19,62 @@ void insertAtEnd(struct Node** first, int val) {
     temp->link = newNode;
 }
 
-struct Node* swapConsecutive(struct Node* first) {
-    if (!first || !first->link) return first;
+// struct Node* swapConsecutive(struct Node* first) {
+//     if (!first || !first->link) return first;
 
-    struct Node* newFirst = first->link;
-    struct Node* prev = NULL;
-    struct Node* curr = first;
+//     struct Node* newFirst = first->link;
+//     struct Node* prev = NULL;
+//     struct Node* curr = first;
 
-    while (curr && curr->link) {
-        struct Node* linkPair = curr->link->link;
-        struct Node* second = curr->link;
-        second->link = curr;
-        curr->link = linkPair;
+//     while (curr && curr->link) {
+//         struct Node* linkPair = curr->link->link;
+//         struct Node* second = curr->link;
+//         second->link = curr;
+//         curr->link = linkPair;
 
-        if (prev){
-            prev->link = second;
+//         if (prev){
+//             prev->link = second;
+//         }
+
+//         prev = curr;
+//         curr = linkPair;
+//     }
+
+//     return newFirst;
+// }
+
+struct Node* swapConsecutive(struct Node* first){
+    if(first==NULL || first->link==NULL) return first;
+
+    struct Node* prev=NULL;
+    struct Node* firstOne=first;
+    struct Node* second=first->link;
+
+    while (firstOne!=NULL && second!=NULL){
+        struct Node* third=second->link;
+        second->link=firstOne;
+        firstOne->link=third;
+
+        if(prev==NULL){
+            first=second;
+        }else{
+            prev->link=second;
         }
+        
+        // update
+        prev=firstOne;
+        firstOne=third;
 
-        prev = curr;
-        curr = linkPair;
+        if(third==NULL){
+            second=NULL;
+        }
+        else {
+            second=third->link;
+        }
+        
     }
-
-    return newFirst;
+    
+    return first;
 }
 
 void printList(struct Node* first) {
